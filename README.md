@@ -314,7 +314,6 @@ The `group_by_size_recursively` function:
 ```
 
 
-
 # Phase 2
 
 # Document Retrieval and Ranking: A Comparative Approach
@@ -365,7 +364,7 @@ This project focuses on developing and evaluating document retrieval and ranking
 | Model                 | Precision@K (P@5) | Recall@K (R@5) |
 |-----------------------|-------------------|----------------|
 | **TF-IDF**            | 0.82              | 0.24           |
-| **Boolean Query**     | NA (Not ranked)   | Context-dependent |
+| **Boolean Query**     | 0.0954            | 0.9923   
 | **BERT + TF-IDF**     | 0.93              | 0.48           |
 
 ### **Key Observations**
@@ -375,10 +374,50 @@ This project focuses on developing and evaluating document retrieval and ranking
 
 ---
 
+## Analysis of Results
+
+### Average Precision: 0.0954
+- **Precision** measures the proportion of retrieved documents that are actually relevant.
+- A score of 0.0954 indicates that, on average, only **9.54%** of the retrieved documents are relevant.
+- This low precision implies that the model retrieves a significant number of irrelevant documents (high false positives).
+
+### Average Recall: 0.9923
+- **Recall** measures the proportion of all relevant documents that are successfully retrieved.
+- A score of 0.9923 indicates that **99.23%** of all relevant documents are included in the retrieved set.
+- This high recall demonstrates that the model effectively retrieves almost all relevant documents, albeit with many irrelevant ones.
+
+---
+
+### Interpretation
+- **Low Precision and High Recall**:
+  - The model is overly inclusive, retrieving a large number of documents to ensure it captures all relevant ones.
+  - However, this inclusiveness results in a high number of irrelevant documents being retrieved, lowering the precision.
+
+---
+
+### Recommendations for Improving Precision:
+1. **Enhance the Model**:
+   - Use more advanced models like **BERT** or **Latent Semantic Indexing (LSI)** to better capture semantic relationships between terms.
+
+2. **Improve Ranking**:
+   - Apply ranking methods such as **TF-IDF**, **BM25**, or deep learning-based ranking models to prioritize relevant documents.
+
+3. **Filter Results**:
+   - Limit the number of retrieved documents (e.g., Top-K Results).
+   - Introduce additional filtering criteria to reduce irrelevant documents.
+
+4. **Review Data and Queries**:
+   - Examine the dataset and queries for ambiguities or inconsistencies that might lead to excessive irrelevant results.
+
+By addressing these areas, the model can achieve a better balance between **Precision** and **Recall**, ultimately providing more relevant results while minimizing noise.
+
+---
+
 ## Conclusion
 The hybrid approach combining **BERT** for retrieval and **TF-IDF** for ranking provides the most effective solution for document retrieval. By addressing the limitations of individual models, the hybrid approach achieved superior performance on both precision and recall metrics. This demonstrates the importance of leveraging semantic understanding in modern document retrieval tasks.
 
 ---
+
 
 
 # Contributors
