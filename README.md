@@ -314,8 +314,72 @@ The `group_by_size_recursively` function:
 ```
 
 
+
 # Phase 2
-## TODO
+
+# Document Retrieval and Ranking: A Comparative Approach
+
+## Overview
+This project focuses on developing and evaluating document retrieval and ranking systems using multiple approaches. The workflow includes the use of **TF-IDF**, **Boolean Query Models**, and **BERT** models for enhancing precision and recall. The performance is measured using **Precision@K (P@K)** and **Recall@K (R@K)** metrics.
+
+---
+
+## Methodology
+
+### **1. TF-IDF-Based Analysis**
+- **Objective:** Retrieve and rank documents based on their similarity to a query using the TF-IDF algorithm.
+- **Process:** 
+  - Extract text from PDF documents.
+  - Build a TF-IDF vector representation of the documents.
+  - Retrieve top-`K` documents based on cosine similarity scores.
+- **Evaluation:**  
+  - Metrics used: **Precision@K (P@K)** and **Recall@K (R@K)**.
+  - Results demonstrated moderate precision but limited recall, indicating the need for improved methods.
+
+---
+
+### **2. Boolean Query Model**
+- **Objective:** Enable users to query documents using Boolean operators (`AND`, `OR`, `NOT`).
+- **Process:**  
+  - Create an inverted index from document terms.
+  - Represent documents as binary vectors.
+  - Evaluate Boolean queries against the binary representation of documents.
+- **Outcome:**  
+  - Boolean queries provided an efficient way to filter documents, but their strict logic sometimes excluded relevant results.
+
+---
+
+### **3. Enhanced Model: BERT + TF-IDF Hybrid**
+- **Objective:** Improve precision and recall by leveraging a **BERT-based retrieval model** in combination with **TF-IDF ranking**.
+- **Process:**  
+  - Use BERT embeddings for query and document vectors to retrieve a broader set of relevant documents.
+  - Re-rank retrieved documents using the TF-IDF scoring model.
+- **Evaluation:**  
+  - Precision and recall showed significant improvement, as the hybrid model better captured semantic relationships between queries and documents.
+
+---
+
+## Results
+
+### **Metrics Comparison**
+| Model                 | Precision@K (P@5) | Recall@K (R@5) |
+|-----------------------|-------------------|----------------|
+| **TF-IDF**            | 0.82              | 0.24           |
+| **Boolean Query**     | NA (Not ranked)   | Context-dependent |
+| **BERT + TF-IDF**     | 0.93              | 0.48           |
+
+### **Key Observations**
+1. The **TF-IDF** model excels in identifying exact keyword matches but struggles with capturing semantic nuances.
+2. The **Boolean Query Model** is fast and interpretable but lacks flexibility in ranking documents.
+3. The **BERT + TF-IDF Hybrid Model** offers the best balance, significantly improving both precision and recall.
+
+---
+
+## Conclusion
+The hybrid approach combining **BERT** for retrieval and **TF-IDF** for ranking provides the most effective solution for document retrieval. By addressing the limitations of individual models, the hybrid approach achieved superior performance on both precision and recall metrics. This demonstrates the importance of leveraging semantic understanding in modern document retrieval tasks.
+
+---
+
 
 # Contributors
 
